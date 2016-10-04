@@ -1,0 +1,389 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD build/DrawLives.o
+LOAD build/ImgMainMenu.o
+LOAD build/NumZero.o
+LOAD build/NumTwo.o
+LOAD build/jtag.o
+LOAD build/NumOne.o
+LOAD build/NumFive.o
+LOAD build/ImgApple.o
+LOAD build/ImgBlack.o
+LOAD build/FrameBufferPixel.o
+LOAD build/ImgBlank.o
+LOAD build/Interrupt.o
+LOAD build/ImgWood.o
+LOAD build/Heart.o
+LOAD build/ImgBlocks.o
+LOAD build/ScoreText.o
+LOAD build/NumEight.o
+LOAD build/NumNine.o
+LOAD build/ImgPauseScreen.o
+LOAD build/main.o
+LOAD build/LivesText.o
+LOAD build/ImgGameLost.o
+LOAD build/NumSeven.o
+LOAD build/ImgArrows.o
+LOAD build/RandomNumber.o
+LOAD build/ImgBricks.o
+LOAD build/SnakeCell.o
+LOAD build/DrawScore.o
+LOAD build/Snake.o
+LOAD build/NumThree.o
+LOAD build/NumFour.o
+LOAD build/ImgGameWon.o
+LOAD build/ImgDoor.o
+LOAD build/NumSix.o
+LOAD build/ImgWhiteArrow.o
+LOAD build/Driver.o
+
+.init           0x00008000        0x8
+ *(.init)
+ .init          0x00008000        0x4 build/main.o
+                0x00008000                _start
+ .init          0x00008004        0x4 build/Driver.o
+                0x00008004                _startDriver
+
+.data           0x00009080      0xa00
+ *(.data)
+ .data          0x00009080        0x0 build/DrawLives.o
+ .data          0x00009080        0x0 build/ImgMainMenu.o
+ .data          0x00009080        0x0 build/NumZero.o
+ .data          0x00009080        0x0 build/NumTwo.o
+ .data          0x00009080        0x0 build/jtag.o
+ .data          0x00009080        0x0 build/NumOne.o
+ .data          0x00009080        0x0 build/NumFive.o
+ .data          0x00009080        0x0 build/ImgApple.o
+ .data          0x00009080        0x0 build/ImgBlack.o
+ .data          0x00009080       0x30 build/FrameBufferPixel.o
+                0x00009080                FrameBufferInfo
+                0x000090a8                FrameBufferPointer
+ .data          0x000090b0        0x0 build/ImgBlank.o
+ .data          0x000090b0       0x40 build/Interrupt.o
+ .data          0x000090f0        0x0 build/ImgWood.o
+ .data          0x000090f0        0x0 build/Heart.o
+ .data          0x000090f0        0x0 build/ImgBlocks.o
+ .data          0x000090f0        0x0 build/ScoreText.o
+ .data          0x000090f0        0x0 build/NumEight.o
+ .data          0x000090f0        0x0 build/NumNine.o
+ .data          0x000090f0        0x0 build/ImgPauseScreen.o
+ .data          0x000090f0       0xa8 build/main.o
+                0x000090f0                wood_blocks
+                0x00009194                score
+ .data          0x00009198        0x0 build/LivesText.o
+ .data          0x00009198        0x0 build/ImgGameLost.o
+ .data          0x00009198        0x0 build/NumSeven.o
+ .data          0x00009198        0x0 build/ImgArrows.o
+ .data          0x00009198        0x0 build/RandomNumber.o
+ .data          0x00009198        0x0 build/ImgBricks.o
+ .data          0x00009198        0x0 build/SnakeCell.o
+ .data          0x00009198        0x0 build/DrawScore.o
+ *fill*         0x00009198        0x8 3f3f3f3f
+ .data          0x000091a0      0x8e0 build/Snake.o
+                0x000099a0                queue
+                0x00009a68                whereIsDoor
+                0x00009a70                whereIsVP
+                0x00009a78                numApplesEaten
+ .data          0x00009a80        0x0 build/NumThree.o
+ .data          0x00009a80        0x0 build/NumFour.o
+ .data          0x00009a80        0x0 build/ImgGameWon.o
+ .data          0x00009a80        0x0 build/ImgDoor.o
+ .data          0x00009a80        0x0 build/NumSix.o
+ .data          0x00009a80        0x0 build/ImgWhiteArrow.o
+ .data          0x00009a80        0x0 build/Driver.o
+ *.c.o(*)
+
+.igot.plt       0x00009a80        0x0
+ .igot.plt      0x00000000        0x0 build/DrawLives.o
+
+.text           0x00009a80   0x27155c
+ *.c.o(.text)
+ *(.text)
+ .text          0x00009a80       0x94 build/DrawLives.o
+                0x00009a80                drawLives
+ .text          0x00009b14   0x180000 build/ImgMainMenu.o
+                0x00009b14                mainMenu
+ .text          0x00189b14      0x800 build/NumZero.o
+                0x00189b14                zero
+ .text          0x0018a314      0x800 build/NumTwo.o
+                0x0018a314                two
+ .text          0x0018ab14       0x8c build/jtag.o
+                0x0018ab14                EnableJTAG
+ .text          0x0018aba0      0x800 build/NumOne.o
+                0x0018aba0                one
+ .text          0x0018b3a0      0x800 build/NumFive.o
+                0x0018b3a0                five
+ .text          0x0018bba0      0x800 build/ImgApple.o
+                0x0018bba0                apple
+ .text          0x0018c3a0      0x800 build/ImgBlack.o
+                0x0018c3a0                black
+ .text          0x0018cba0      0x100 build/FrameBufferPixel.o
+                0x0018cba0                InitFrameBuffer
+                0x0018cbe8                DrawPixel
+                0x0018cc30                MailboxWrite
+                0x0018cc60                MailboxRead
+ .text          0x0018cca0      0x800 build/ImgBlank.o
+                0x0018cca0                blank
+ .text          0x0018d4a0       0xf4 build/Interrupt.o
+                0x0018d4a0                enableInterrupts
+                0x0018d4b4                enableTimerIRQ
+                0x0018d4c8                disableTimerInterrupt
+                0x0018d520                waiter
+                0x0018d53c                InstallIntTable
+ .text          0x0018d594      0x800 build/ImgWood.o
+                0x0018d594                wood
+ .text          0x0018dd94      0x800 build/Heart.o
+                0x0018dd94                heart
+ .text          0x0018e594      0x800 build/ImgBlocks.o
+                0x0018e594                blocks
+ .text          0x0018ed94     0x23c0 build/ScoreText.o
+                0x0018ed94                scoreText
+ .text          0x00191154      0x800 build/NumEight.o
+                0x00191154                eight
+ .text          0x00191954      0x800 build/NumNine.o
+                0x00191954                nine
+ .text          0x00192154    0x4b000 build/ImgPauseScreen.o
+                0x00192154                pauseScreen
+ .text          0x001dd154      0x4e4 build/main.o
+                0x001dd298                startGame
+                0x001dd358                quitGame
+                0x001dd394                haltLoop$
+                0x001dd398                restartGame
+                0x001dd3e4                winGame
+                0x001dd414                anyButtonToRestart
+                0x001dd42c                LoseGame
+                0x001dd4d8                DrawSquare
+                0x001dd534                DrawMessage
+ .text          0x001dd638     0x23c0 build/LivesText.o
+                0x001dd638                livesText
+ .text          0x001df9f8    0x4b000 build/ImgGameLost.o
+                0x001df9f8                gameLost
+ .text          0x0022a9f8      0x800 build/NumSeven.o
+                0x0022a9f8                seven
+ .text          0x0022b1f8      0x800 build/ImgArrows.o
+                0x0022b1f8                arrow
+ .text          0x0022b9f8       0x9c build/RandomNumber.o
+                0x0022b9f8                randomNumber
+ .text          0x0022ba94      0x800 build/ImgBricks.o
+                0x0022ba94                brick
+ .text          0x0022c294      0x800 build/SnakeCell.o
+                0x0022c294                snakeCell
+ .text          0x0022ca94      0x1a8 build/DrawScore.o
+                0x0022ca94                drawScore
+ .text          0x0022cc3c      0x894 build/Snake.o
+                0x0022cc3c                snake
+                0x0022d024                eraseTail
+                0x0022d0b4                boundsCheck
+ .text          0x0022d4d0      0x800 build/NumThree.o
+                0x0022d4d0                three
+ .text          0x0022dcd0      0x800 build/NumFour.o
+                0x0022dcd0                four
+ .text          0x0022e4d0    0x4b000 build/ImgGameWon.o
+                0x0022e4d0                gameWon
+ .text          0x002794d0      0x800 build/ImgDoor.o
+                0x002794d0                door
+ .text          0x00279cd0      0x800 build/NumSix.o
+                0x00279cd0                six
+ .text          0x0027a4d0      0x800 build/ImgWhiteArrow.o
+                0x0027a4d0                whiteArrow
+ .text          0x0027acd0      0x30c build/Driver.o
+                0x0027acec                divide
+                0x0027ad4c                Init_GPIO
+                0x0027ae14                Wait
+                0x0027ae38                Read_SNES
+OUTPUT(build/output.elf elf32-littlearm)
+
+.glue_7         0x0027afdc        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x0027afdc        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x0027afdc        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x0027afdc        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x0027afdc        0x0
+ .iplt          0x00000000        0x0 build/DrawLives.o
+
+.rel.dyn        0x0027afdc        0x0
+ .rel.iplt      0x00000000        0x0 build/DrawLives.o
+
+.bss            0x0027afdc        0x0
+ .bss           0x0027afdc        0x0 build/DrawLives.o
+ .bss           0x0027afdc        0x0 build/ImgMainMenu.o
+ .bss           0x0027afdc        0x0 build/NumZero.o
+ .bss           0x0027afdc        0x0 build/NumTwo.o
+ .bss           0x0027afdc        0x0 build/jtag.o
+ .bss           0x0027afdc        0x0 build/NumOne.o
+ .bss           0x0027afdc        0x0 build/NumFive.o
+ .bss           0x0027afdc        0x0 build/ImgApple.o
+ .bss           0x0027afdc        0x0 build/ImgBlack.o
+ .bss           0x0027afdc        0x0 build/FrameBufferPixel.o
+ .bss           0x0027afdc        0x0 build/ImgBlank.o
+ .bss           0x0027afdc        0x0 build/Interrupt.o
+ .bss           0x0027afdc        0x0 build/ImgWood.o
+ .bss           0x0027afdc        0x0 build/Heart.o
+ .bss           0x0027afdc        0x0 build/ImgBlocks.o
+ .bss           0x0027afdc        0x0 build/ScoreText.o
+ .bss           0x0027afdc        0x0 build/NumEight.o
+ .bss           0x0027afdc        0x0 build/NumNine.o
+ .bss           0x0027afdc        0x0 build/ImgPauseScreen.o
+ .bss           0x0027afdc        0x0 build/main.o
+ .bss           0x0027afdc        0x0 build/LivesText.o
+ .bss           0x0027afdc        0x0 build/ImgGameLost.o
+ .bss           0x0027afdc        0x0 build/NumSeven.o
+ .bss           0x0027afdc        0x0 build/ImgArrows.o
+ .bss           0x0027afdc        0x0 build/RandomNumber.o
+ .bss           0x0027afdc        0x0 build/ImgBricks.o
+ .bss           0x0027afdc        0x0 build/SnakeCell.o
+ .bss           0x0027afdc        0x0 build/DrawScore.o
+ .bss           0x0027afdc        0x0 build/Snake.o
+ .bss           0x0027afdc        0x0 build/NumThree.o
+ .bss           0x0027afdc        0x0 build/NumFour.o
+ .bss           0x0027afdc        0x0 build/ImgGameWon.o
+ .bss           0x0027afdc        0x0 build/ImgDoor.o
+ .bss           0x0027afdc        0x0 build/NumSix.o
+ .bss           0x0027afdc        0x0 build/ImgWhiteArrow.o
+ .bss           0x0027afdc        0x0 build/Driver.o
+
+.ARM.attributes
+                0x00000000       0x26
+ .ARM.attributes
+                0x00000000       0x26 build/DrawLives.o
+ .ARM.attributes
+                0x00000026       0x26 build/ImgMainMenu.o
+ .ARM.attributes
+                0x0000004c       0x26 build/NumZero.o
+ .ARM.attributes
+                0x00000072       0x26 build/NumTwo.o
+ .ARM.attributes
+                0x00000098       0x26 build/jtag.o
+ .ARM.attributes
+                0x000000be       0x26 build/NumOne.o
+ .ARM.attributes
+                0x000000e4       0x26 build/NumFive.o
+ .ARM.attributes
+                0x0000010a       0x26 build/ImgApple.o
+ .ARM.attributes
+                0x00000130       0x26 build/ImgBlack.o
+ .ARM.attributes
+                0x00000156       0x26 build/FrameBufferPixel.o
+ .ARM.attributes
+                0x0000017c       0x26 build/ImgBlank.o
+ .ARM.attributes
+                0x000001a2       0x26 build/Interrupt.o
+ .ARM.attributes
+                0x000001c8       0x26 build/ImgWood.o
+ .ARM.attributes
+                0x000001ee       0x26 build/Heart.o
+ .ARM.attributes
+                0x00000214       0x26 build/ImgBlocks.o
+ .ARM.attributes
+                0x0000023a       0x26 build/ScoreText.o
+ .ARM.attributes
+                0x00000260       0x26 build/NumEight.o
+ .ARM.attributes
+                0x00000286       0x26 build/NumNine.o
+ .ARM.attributes
+                0x000002ac       0x26 build/ImgPauseScreen.o
+ .ARM.attributes
+                0x000002d2       0x26 build/main.o
+ .ARM.attributes
+                0x000002f8       0x26 build/LivesText.o
+ .ARM.attributes
+                0x0000031e       0x26 build/ImgGameLost.o
+ .ARM.attributes
+                0x00000344       0x26 build/NumSeven.o
+ .ARM.attributes
+                0x0000036a       0x26 build/ImgArrows.o
+ .ARM.attributes
+                0x00000390       0x26 build/RandomNumber.o
+ .ARM.attributes
+                0x000003b6       0x26 build/ImgBricks.o
+ .ARM.attributes
+                0x000003dc       0x26 build/SnakeCell.o
+ .ARM.attributes
+                0x00000402       0x26 build/DrawScore.o
+ .ARM.attributes
+                0x00000428       0x26 build/Snake.o
+ .ARM.attributes
+                0x0000044e       0x26 build/NumThree.o
+ .ARM.attributes
+                0x00000474       0x26 build/NumFour.o
+ .ARM.attributes
+                0x0000049a       0x26 build/ImgGameWon.o
+ .ARM.attributes
+                0x000004c0       0x26 build/ImgDoor.o
+ .ARM.attributes
+                0x000004e6       0x26 build/NumSix.o
+ .ARM.attributes
+                0x0000050c       0x26 build/ImgWhiteArrow.o
+ .ARM.attributes
+                0x00000532       0x26 build/Driver.o
+
+.debug_line     0x00000000      0x87c
+ .debug_line    0x00000000       0x68 build/DrawLives.o
+ .debug_line    0x00000068       0x61 build/jtag.o
+ .debug_line    0x000000c9       0x96 build/FrameBufferPixel.o
+ .debug_line    0x0000015f       0x9e build/Interrupt.o
+ .debug_line    0x000001fd      0x1b3 build/main.o
+ .debug_line    0x000003b0       0x6b build/RandomNumber.o
+ .debug_line    0x0000041b       0xae build/DrawScore.o
+ .debug_line    0x000004c9      0x29c build/Snake.o
+ .debug_line    0x00000765      0x117 build/Driver.o
+
+.debug_info     0x00000000      0x37a
+ .debug_info    0x00000000       0x65 build/DrawLives.o
+ .debug_info    0x00000065       0x60 build/jtag.o
+ .debug_info    0x000000c5       0x6c build/FrameBufferPixel.o
+ .debug_info    0x00000131       0x61 build/Interrupt.o
+ .debug_info    0x00000192       0x5c build/main.o
+ .debug_info    0x000001ee       0x68 build/RandomNumber.o
+ .debug_info    0x00000256       0x65 build/DrawScore.o
+ .debug_info    0x000002bb       0x61 build/Snake.o
+ .debug_info    0x0000031c       0x5e build/Driver.o
+
+.debug_abbrev   0x00000000       0xae
+ .debug_abbrev  0x00000000       0x14 build/DrawLives.o
+ .debug_abbrev  0x00000014       0x14 build/jtag.o
+ .debug_abbrev  0x00000028       0x14 build/FrameBufferPixel.o
+ .debug_abbrev  0x0000003c       0x12 build/Interrupt.o
+ .debug_abbrev  0x0000004e       0x12 build/main.o
+ .debug_abbrev  0x00000060       0x14 build/RandomNumber.o
+ .debug_abbrev  0x00000074       0x14 build/DrawScore.o
+ .debug_abbrev  0x00000088       0x14 build/Snake.o
+ .debug_abbrev  0x0000009c       0x12 build/Driver.o
+
+.debug_aranges  0x00000000      0x138
+ .debug_aranges
+                0x00000000       0x20 build/DrawLives.o
+ .debug_aranges
+                0x00000020       0x20 build/jtag.o
+ .debug_aranges
+                0x00000040       0x20 build/FrameBufferPixel.o
+ .debug_aranges
+                0x00000060       0x28 build/Interrupt.o
+ .debug_aranges
+                0x00000088       0x28 build/main.o
+ .debug_aranges
+                0x000000b0       0x20 build/RandomNumber.o
+ .debug_aranges
+                0x000000d0       0x20 build/DrawScore.o
+ .debug_aranges
+                0x000000f0       0x20 build/Snake.o
+ .debug_aranges
+                0x00000110       0x28 build/Driver.o
+
+.debug_ranges   0x00000000       0x60
+ .debug_ranges  0x00000000       0x20 build/Interrupt.o
+ .debug_ranges  0x00000020       0x20 build/main.o
+ .debug_ranges  0x00000040       0x20 build/Driver.o
